@@ -89,3 +89,13 @@ print(arr)
 arr = [[0] * 5 for _ in range(4)]
 print(arr)
 
+# 4 X 5 크기를 갖는 2차원 리스트 초기화 
+arr = [[i] * 5 for i in range(4)]
+print(arr)
+
+# 4 X 5 크기를 갖는 2차원 리스트 초기화 
+arr =[[(i * 5) + j for j in range(5)] for i in range(4)]
+print(arr)
+
+
+
