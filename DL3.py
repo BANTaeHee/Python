@@ -43,12 +43,40 @@ import numpy as np
 from sklearn import linear_model
 
 # LinearRegression() 생성자를 통해 선형 회귀 모델(객체)을 생성함
-regr = linear_model.linearRegression()
+regr = linear_model.LinearRegression()
 
 # 입력 데이터 집합 x
+X = [[163], [179], [166], [169], [171]]         # 입력 데이터(2차원 리스트)
+y = [53, 63, 57, 56, 58]                        # 정답
+regr.fit(X, y)                                  # 데이터 사용하여 훈련(학습)하기
 
+# 직선의 기울기
+coef = regr.coef_                   # regr 모델의 coef_ 속성값으로 얻음
+# 직선의 절편
+intercept = regr.intercept_         # regr 모델의 intecept_ 속성값으로 얻음
 
+score = regr.score(X, y)            # score() 함수를 통해서 이 모델의 점수 구함
 
+#
+print("y= {} * x + {:.2f}".format(coef.round(2), intercept))
+print("데이터와 선형 회귀 직선의 관계 점수 : {:.1%}".format(score))
+
+import matplotlib.pyplot as plt
+
+fig = plt.figure(figsize=(8,8))
+
+# 학습 데이터와 y값을 산포도로 그리기
+plt.scatter(X, y, color='blue', marker='D')
+y_pred = regr.predict(X)            # 학습 데이터를 입력하여 예측값을 계산함
+plt.plot(X, y_pred, 'r:')           # 계산된 기울기와 y절편을 가지는 점선 그리기
+
+fig.savefig("LinearRegression_result.png")
+
+# 167인 순신이의 키를 넣어서 그 추정값을 출력하기
+sunsin = [[167]]
+result = regr.predict(sunsin)
+print('순신이의 키가 {}cm 이므로 몸무게는 {}kg으로 추정됨.'.format(\
+                    sunsin, result.round(1)))
 
 
 
